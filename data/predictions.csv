@@ -1,0 +1,121 @@
+id,predicted_state,predicted_intensity,confidence,uncertain_flag,what_to_do,when_to_do,message
+10001,focused,3,0.63,0,pause,within_15_min,Great focus. This could be a good moment for deep work.
+10002,restless,5,0.345,1,pause,within_15_min,Take a short pause and reset.
+10003,focused,4,0.295,1,box_breathing,now,Great focus. This could be a good moment for deep work.
+10004,focused,2,0.88,0,pause,within_15_min,Great focus. This could be a good moment for deep work.
+10005,neutral,5,0.355,1,box_breathing,now,Take a short pause and reset.
+10006,mixed,4,0.265,1,pause,within_15_min,Take a short pause and reset.
+10007,restless,4,0.5,0,pause,within_15_min,Take a short pause and reset.
+10008,overwhelmed,3,0.38,1,box_breathing,now,Take a short pause and reset.
+10009,restless,4,0.845,0,box_breathing,now,Take a short pause and reset.
+10010,overwhelmed,5,0.415,1,pause,within_15_min,Take a short pause and reset.
+10011,overwhelmed,4,0.295,1,pause,within_15_min,Take a short pause and reset.
+10012,neutral,4,0.21,1,pause,within_15_min,Take a short pause and reset.
+10013,restless,3,0.2,1,pause,within_15_min,Take a short pause and reset.
+10014,focused,3,0.775,0,box_breathing,now,Great focus. This could be a good moment for deep work.
+10015,calm,3,0.405,1,pause,within_15_min,Take a short pause and reset.
+10016,neutral,4,0.425,1,light_planning,tonight,Take a short pause and reset.
+10017,mixed,4,0.84,0,pause,within_15_min,Take a short pause and reset.
+10018,mixed,3,0.89,0,box_breathing,now,Take a short pause and reset.
+10019,focused,4,0.43,1,deep_work,now,Great focus. This could be a good moment for deep work.
+10020,calm,1,0.335,1,light_planning,tonight,Take a short pause and reset.
+10021,overwhelmed,3,0.72,0,box_breathing,now,Take a short pause and reset.
+10022,calm,1,0.675,0,pause,within_15_min,Take a short pause and reset.
+10023,overwhelmed,3,0.255,1,box_breathing,now,Take a short pause and reset.
+10024,neutral,2,0.285,1,light_planning,tonight,Take a short pause and reset.
+10025,calm,3,0.31,1,box_breathing,now,Take a short pause and reset.
+10026,overwhelmed,4,0.51,0,pause,within_15_min,Take a short pause and reset.
+10027,calm,5,0.215,1,light_planning,tonight,Take a short pause and reset.
+10028,restless,2,0.235,1,pause,within_15_min,Take a short pause and reset.
+10029,overwhelmed,3,0.69,0,box_breathing,now,Take a short pause and reset.
+10030,calm,1,0.27,1,pause,within_15_min,Take a short pause and reset.
+10031,focused,1,0.86,0,pause,within_15_min,Great focus. This could be a good moment for deep work.
+10032,restless,3,0.29,1,box_breathing,now,Take a short pause and reset.
+10033,overwhelmed,1,0.73,0,pause,within_15_min,Take a short pause and reset.
+10034,neutral,1,0.47,1,pause,within_15_min,Take a short pause and reset.
+10035,focused,4,0.835,0,deep_work,now,Great focus. This could be a good moment for deep work.
+10036,neutral,5,0.3,1,box_breathing,now,Take a short pause and reset.
+10037,mixed,1,0.27,1,pause,within_15_min,Take a short pause and reset.
+10038,focused,4,0.405,1,deep_work,now,Great focus. This could be a good moment for deep work.
+10039,mixed,1,0.66,0,light_planning,tonight,Take a short pause and reset.
+10040,mixed,5,0.675,0,light_planning,tonight,Take a short pause and reset.
+10041,overwhelmed,4,0.335,1,pause,within_15_min,Take a short pause and reset.
+10042,neutral,4,0.32,1,pause,within_15_min,Take a short pause and reset.
+10043,restless,1,0.53,0,pause,within_15_min,Take a short pause and reset.
+10044,focused,3,0.25,1,deep_work,now,Great focus. This could be a good moment for deep work.
+10045,restless,5,0.38,1,pause,within_15_min,Take a short pause and reset.
+10046,focused,2,0.92,0,deep_work,now,Great focus. This could be a good moment for deep work.
+10047,focused,5,0.56,0,deep_work,now,Great focus. This could be a good moment for deep work.
+10048,calm,3,0.355,1,pause,within_15_min,Take a short pause and reset.
+10049,restless,4,0.4,1,pause,within_15_min,Take a short pause and reset.
+10050,restless,4,0.53,0,box_breathing,now,Take a short pause and reset.
+10051,neutral,2,0.21,1,pause,within_15_min,Take a short pause and reset.
+10052,restless,4,0.515,0,pause,within_15_min,Take a short pause and reset.
+10053,calm,2,0.51,0,pause,within_15_min,Take a short pause and reset.
+10054,overwhelmed,5,0.715,0,pause,within_15_min,Take a short pause and reset.
+10055,mixed,5,0.665,0,pause,within_15_min,Take a short pause and reset.
+10056,focused,4,0.8,0,deep_work,now,Great focus. This could be a good moment for deep work.
+10057,overwhelmed,4,0.54,0,pause,within_15_min,Take a short pause and reset.
+10058,overwhelmed,3,0.295,1,pause,within_15_min,Take a short pause and reset.
+10059,mixed,5,0.32,1,box_breathing,now,Take a short pause and reset.
+10060,mixed,4,0.245,1,pause,within_15_min,Take a short pause and reset.
+10061,neutral,5,0.39,1,pause,within_15_min,Take a short pause and reset.
+10062,calm,4,0.31,1,box_breathing,now,Take a short pause and reset.
+10063,restless,5,0.345,1,pause,within_15_min,Take a short pause and reset.
+10064,neutral,5,0.31,1,pause,within_15_min,Take a short pause and reset.
+10065,neutral,5,0.74,0,pause,within_15_min,Take a short pause and reset.
+10066,restless,1,0.625,0,light_planning,tonight,Take a short pause and reset.
+10067,restless,5,0.67,0,pause,within_15_min,Take a short pause and reset.
+10068,overwhelmed,3,0.69,0,box_breathing,now,Take a short pause and reset.
+10069,neutral,3,0.785,0,light_planning,tonight,Take a short pause and reset.
+10070,calm,4,0.255,1,box_breathing,now,Take a short pause and reset.
+10071,mixed,1,0.615,0,pause,within_15_min,Take a short pause and reset.
+10072,neutral,1,0.275,1,pause,within_15_min,Take a short pause and reset.
+10073,restless,4,0.315,1,box_breathing,now,Take a short pause and reset.
+10074,mixed,3,0.915,0,box_breathing,now,Take a short pause and reset.
+10075,restless,3,0.29,1,box_breathing,now,Take a short pause and reset.
+10076,mixed,3,0.885,0,box_breathing,now,Take a short pause and reset.
+10077,neutral,5,0.75,0,light_planning,tonight,Take a short pause and reset.
+10078,restless,5,0.575,0,pause,within_15_min,Take a short pause and reset.
+10079,restless,4,0.4,1,light_planning,tonight,Take a short pause and reset.
+10080,focused,4,0.4,1,deep_work,now,Great focus. This could be a good moment for deep work.
+10081,restless,3,0.53,0,box_breathing,now,Take a short pause and reset.
+10082,mixed,2,0.22,1,pause,within_15_min,Take a short pause and reset.
+10083,neutral,4,0.25,1,pause,within_15_min,Take a short pause and reset.
+10084,overwhelmed,3,0.75,0,box_breathing,now,Take a short pause and reset.
+10085,restless,1,0.23,1,light_planning,tonight,Take a short pause and reset.
+10086,focused,4,0.215,1,box_breathing,now,Great focus. This could be a good moment for deep work.
+10087,mixed,3,0.915,0,pause,within_15_min,Take a short pause and reset.
+10088,neutral,5,0.39,1,pause,within_15_min,Take a short pause and reset.
+10089,calm,3,0.33,1,light_planning,tonight,Take a short pause and reset.
+10090,mixed,5,0.405,1,light_planning,tonight,Take a short pause and reset.
+10091,neutral,5,0.765,0,box_breathing,now,Take a short pause and reset.
+10092,neutral,3,0.475,1,pause,within_15_min,Take a short pause and reset.
+10093,mixed,4,0.375,1,light_planning,tonight,Take a short pause and reset.
+10094,focused,5,0.3,1,box_breathing,now,Great focus. This could be a good moment for deep work.
+10095,overwhelmed,2,0.4,1,pause,within_15_min,Take a short pause and reset.
+10096,overwhelmed,5,0.255,1,pause,within_15_min,Take a short pause and reset.
+10097,restless,4,0.27,1,light_planning,tonight,Take a short pause and reset.
+10098,overwhelmed,5,0.55,0,box_breathing,now,Take a short pause and reset.
+10099,mixed,3,0.555,0,box_breathing,now,Take a short pause and reset.
+10100,mixed,3,0.51,0,box_breathing,now,Take a short pause and reset.
+10101,focused,1,0.275,1,light_planning,tonight,Great focus. This could be a good moment for deep work.
+10102,overwhelmed,2,0.605,0,light_planning,tonight,Take a short pause and reset.
+10103,calm,4,0.555,0,box_breathing,now,Take a short pause and reset.
+10104,mixed,2,0.605,0,light_planning,tonight,Take a short pause and reset.
+10105,calm,5,0.265,1,pause,within_15_min,Take a short pause and reset.
+10106,neutral,3,0.655,0,pause,within_15_min,Take a short pause and reset.
+10107,calm,2,0.305,1,pause,within_15_min,Take a short pause and reset.
+10108,neutral,5,0.365,1,pause,within_15_min,Take a short pause and reset.
+10109,neutral,2,0.29,1,pause,within_15_min,Take a short pause and reset.
+10110,mixed,5,0.235,1,box_breathing,now,Take a short pause and reset.
+10111,mixed,5,0.8,0,pause,within_15_min,Take a short pause and reset.
+10112,mixed,3,0.87,0,pause,within_15_min,Take a short pause and reset.
+10113,calm,3,0.6,0,box_breathing,now,Take a short pause and reset.
+10114,neutral,3,0.275,1,box_breathing,now,Take a short pause and reset.
+10115,calm,3,0.54,0,box_breathing,now,Take a short pause and reset.
+10116,overwhelmed,1,0.67,0,pause,within_15_min,Take a short pause and reset.
+10117,neutral,5,0.365,1,pause,within_15_min,Take a short pause and reset.
+10118,focused,3,0.535,0,deep_work,now,Great focus. This could be a good moment for deep work.
+10119,mixed,4,0.445,1,box_breathing,now,Take a short pause and reset.
+10120,restless,5,0.295,1,box_breathing,now,Take a short pause and reset.

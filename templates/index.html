@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotion AI 💖</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="toggle">
+    <button onclick="toggleMode()">🌙 / ☀️</button>
+</div>
+
+<div class="container">
+    <h1>🧠 Emotion Assistant</h1>
+    <p class="subtitle">Tell me how you feel 💬</p>
+
+    <form method="POST">
+        <textarea name="text" placeholder="Write your thoughts..." required></textarea>
+
+        <input type="number" step="0.1" name="sleep" placeholder="Sleep Hours 😴" required>
+        <input type="number" name="energy" placeholder="Energy (1-5) ⚡" required>
+        <input type="number" name="stress" placeholder="Stress (1-5) 😣" required>
+
+        <select name="time">
+            <option value="morning">🌅 Morning</option>
+            <option value="evening">🌇 Evening</option>
+            <option value="night">🌙 Night</option>
+        </select>
+
+        <button type="submit">Analyze 💫</button>
+    </form>
+
+    {% if result %}
+    <div class="card">
+        <h2>{{result.state}} ({{result.intensity}})</h2>
+        <p>{{result.message}}</p>
+
+        <div class="confidence">
+            <div class="bar" style="width: {{result.confidence*100}}%"></div>
+        </div>
+        <p>Confidence: {{result.confidence}}</p>
+
+        <p class="action">
+            👉 {{result.action}} → {{result.when}}
+        </p>
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+function toggleMode(){
+    document.body.classList.toggle("light");
+}
+</script>
+
+</body>
+</html>
