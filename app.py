@@ -2,93 +2,82 @@ from flask import Flask, render_template, request
 import pickle
 import pandas as pd
 import re
-from scipy.sparse import hstack
+import os
+from scipy.sparse import hstack, csr_matrix
+import warnings
+
+warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
 
-# ==========================================
-# LOAD MODELS (FINAL CORRECT PATH)
-# ==========================================
-with open("models/emotion_model.pkl", "rb") as f:
-    emotion_model = pickle.load(f)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-with open("models/intensity_model.pkl", "rb") as f:
-    intensity_model = pickle.load(f)
+def load_model(path):
+    try:
+        with open(path, "rb") as f:
+            return pickle.load(f)
+    except Exception as e:
+        print(f"Error loading {path}: {e}")
+        return None
 
-with open("models/vectorizer.pkl", "rb") as f:
-    vectorizer = pickle.load(f)
 
-with open("models/train_meta_cols.pkl", "rb") as f:
-    train_meta_cols = pickle.load(f)
-
-print("✅ Models loaded successfully")
-
-# ==========================================
-# TEXT CLEANING
-# ==========================================
 def clean_text(text):
+    if not text:
+        return ""
     text = str(text).lower()
     text = re.sub(r'[^a-zA-Z ]', '', text)
-    return text
+    return text.strip()
 
-# ==========================================
-# DECISION ENGINE
-# ==========================================
+
 def decision_engine(state, intensity, stress, energy, time):
-
-    if stress >= 4 and intensity >= 3:
+    if stress >= 4:
         return "🫁 Box Breathing", "Now"
-
-    if state == "tired" and energy <= 2:
+    if state == "tired" or energy <= 2:
         return "😴 Rest", "Within 15 min"
-
     if state == "anxious":
         return "🌿 Grounding", "Now"
-
     if state == "sad":
         return "📓 Journaling", "Later Today"
-
     if state == "focused" and energy >= 4:
         return "💻 Deep Work", "Now"
-
-    if time == "evening":
-        return "📝 Light Planning", "Tonight"
-
     return "⏸ Pause", "Soon"
 
-# ==========================================
-# SUPPORT MESSAGE
-# ==========================================
 def supportive_message(state):
-    if state == "anxious":
-        return "You seem anxious. Try breathing slowly."
-    if state == "tired":
-        return "You seem tired. Take some rest."
-    if state == "sad":
-        return "Writing your thoughts may help."
-    if state == "focused":
-        return "Great focus! Keep going!"
-    return "Take a short pause."
+    messages = {
+        "anxious": "You seem anxious. Try breathing slowly.",
+        "tired": "You seem tired. Take some rest.",
+        "sad": "Writing your thoughts may help.",
+        "focused": "Great focus! Keep going!",
+        "happy": "Wonderful to see you in a good mood!",
+        "calm": "Stay peaceful and enjoy the moment."
+    }
+    return messages.get(str(state).lower(), "Take a short pause.")
 
-# ==========================================
-# MAIN ROUTE
-# ==========================================
 @app.route("/", methods=["GET", "POST"])
 def home():
-
     if request.method == "POST":
         try:
+            # 🔥 LAZY LOAD MODELS (Fix for Render crash)
+            emotion_model = load_model(os.path.join(BASE_DIR, "models/emotion_model.pkl"))
+            intensity_model = load_model(os.path.join(BASE_DIR, "models/intensity_model.pkl"))
+            vectorizer = load_model(os.path.join(BASE_DIR, "models/vectorizer.pkl"))
+            train_meta_cols = load_model(os.path.join(BASE_DIR, "models/train_meta_cols.pkl"))
+
+            if not emotion_model or not intensity_model or not vectorizer:
+                return render_template("index.html", result={
+                    "state": "Error",
+                    "message": "Model loading failed"
+                })
+
             # INPUT
             user_text = request.form.get("text", "")
-            sleep = float(request.form.get("sleep", 0))
-            energy = int(request.form.get("energy", 0))
-            stress = int(request.form.get("stress", 0))
+            sleep = float(request.form.get("sleep") or 0)
+            energy = int(request.form.get("energy") or 0)
+            stress = int(request.form.get("stress") or 0)
             time_of_day = request.form.get("time", "morning")
 
-            # CLEAN TEXT
+            # TEXT PROCESSING
             user_clean = clean_text(user_text)
-
-            # TEXT VECTOR
             user_text_vec = vectorizer.transform([user_clean])
 
             # METADATA
@@ -104,32 +93,31 @@ def home():
                 "reflection_quality": "medium"
             }
 
-            user_meta = pd.DataFrame([user_meta_dict])
-            user_meta = pd.get_dummies(user_meta)
-            user_meta = user_meta.reindex(columns=train_meta_cols, fill_value=0)
-            user_meta = user_meta.astype(float)
+            user_meta_df = pd.DataFrame([user_meta_dict])
+            user_meta_df = pd.get_dummies(user_meta_df)
 
-            # COMBINE
-            user_X = hstack([user_text_vec, user_meta])
+            # MATCH TRAINING COLUMNS
+            user_meta_df = user_meta_df.reindex(columns=train_meta_cols, fill_value=0)
 
-            # PREDICT
+            # SPARSE CONVERSION
+            user_meta_sparse = csr_matrix(user_meta_df.astype(float).values)
+
+            # COMBINE FEATURES
+            user_X = hstack([user_text_vec, user_meta_sparse])
+
+            # PREDICTIONS
             state = emotion_model.predict(user_X)[0]
             intensity = int(intensity_model.predict(user_X)[0])
 
-            # CONFIDENCE
             probs = emotion_model.predict_proba(user_X)
             confidence = float(probs.max())
 
-            # DECISION
-            action, when = decision_engine(
-                state, intensity, stress, energy, time_of_day
-            )
-
-            # MESSAGE
+            # DECISION LOGIC
+            action, when = decision_engine(state, intensity, stress, energy, time_of_day)
             msg = supportive_message(state)
 
-            if confidence < 0.5:
-                msg = "🤔 I'm not fully sure, but " + msg
+            if confidence < 0.4:
+                msg = "🤔 I'm still learning, but " + msg
 
             return render_template("index.html", result={
                 "state": state,
@@ -141,19 +129,14 @@ def home():
             })
 
         except Exception as e:
+            print("Error:", e)
             return render_template("index.html", result={
                 "state": "Error",
-                "intensity": "-",
-                "confidence": 0,
-                "action": "Fix input",
-                "when": "",
                 "message": str(e)
             })
 
     return render_template("index.html", result=None)
 
-# ==========================================
-# RUN APP
-# ==========================================
+
 if __name__ == "__main__":
     app.run(debug=True)
