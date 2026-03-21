@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import pickle
 import pandas as pd
 import re
 import os
@@ -8,6 +9,16 @@ import warnings
 warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+def load_model(path):
+    try:
+        with open(path, "rb") as f:
+            return pickle.load(f)
+    except Exception as e:
+        print(f"Error loading {path}: {e}")
+        return None
 
 def clean_text(text):
     if not text:
